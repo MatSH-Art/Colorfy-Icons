@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: "Britannic Bold";
+        src: url("Fonts/BritannicBold.ttf") format("truetype");
+      }
+
+      body {
+        font-family: "Britannic Bold", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI Emoji", "Noto Color Emoji",
+          "Segoe UI Symbol";
+        padding: 10px;
+        width: 220px;
+        color: black;
+      }
+      button {
+        width: 100%;
+        margin-top: 8px;
+        padding: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #fac900;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+        font-family: "Britannic Bold", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI Emoji", "Noto Color Emoji",
+          "Segoe UI Symbol";
+      }
+      button:hover {
+        background-color: #ffeda5;
+      }
+      .toggle-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 12px;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 22px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 22px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #fac900; /* yellow */
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(18px);
+      }
+
+      #toggle-custom-favicon-label {
+        font-size: 14px;
+        padding-left: 8px;
+        flex-grow: 1;
+        text-align: left;
+        font-family: "Britannic Bold", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI Emoji", "Noto Color Emoji",
+          "Segoe UI Symbol";
+      }
+      h3 {
+        font-weight: bold;
+        font-size: 18px;
+        font-family: "Britannic Bold", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI Emoji", "Noto Color Emoji",
+          "Segoe UI Symbol";
+      }
+      #refresh-page {
+        background-color: #fac900;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-weight: 1200;
+        outline: 1px solid black;
+        padding: 0;
+        padding-bottom: 1.37px;
+        padding-left: 1.37px;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        margin-top: 0;
+      }
+      #refresh-page:hover {
+        background-color: #ffeda5;
+      }
+
+      label,
+      input,
+      p,
+      h3,
+      span {
+        font-family: "Britannic Bold", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI Emoji", "Noto Color Emoji",
+          "Segoe UI Symbol";
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <h3 style="margin: 0">Favicon Recolor</h3>
+      <button id="refresh-page" title="Apply changes">⟳</button>
+    </div>
+
+    <button id="retry">Retry Favicon</button>
+    <button id="toggle-exception">➕ Add to Exceptions</button>
+
+    <p id="status" style="font-size: 12px; color: gray"></p>
+
+    <input
+      id="custom-favicon-url"
+      type="text"
+      placeholder="Paste PNG/ICO URL here"
+      style="width: 100%; margin-top: 10px"
+    />
+    <button id="save-custom-favicon">Use Custom Favicon</button>
+
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="toggle-custom-favicon-checkbox" />
+        <span class="slider"></span>
+      </label>
+      <span id="toggle-custom-favicon-label">Custom Favicon</span>
+    </div>
+
+    <div
+      style="
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 8px;
+        background-color: #f0f0f0;
+      "
+    >
+      <label
+        for="color-input"
+        style="display: block; font-size: 14px; margin-bottom: 4px"
+        >Recolor Icon Color:</label
+      >
+      <div style="display: flex; align-items: center">
+        <input
+          id="color-input"
+          type="text"
+          placeholder="Enter RGB or HEX"
+          style="flex-grow: 1; padding: 6px; font-size: 14px"
+        />
+        <button
+          id="toggle-color-mode"
+          style="margin-left: 8px; padding: 6px; font-size: 14px"
+        >
+          RGB
+        </button>
+      </div>
+
+      <div id="rgb-inputs" style="display: none; margin-top: 8px">
+        <label style="display: block; font-size: 14px">RGB Values:</label>
+        <div style="display: flex; gap: 4px; align-items: center">
+          <input
+            id="r-input"
+            type="number"
+            placeholder="R"
+            min="0"
+            max="255"
+            style="width: 60px; padding: 6px; font-size: 14px"
+          />
+          <input
+            id="g-input"
+            type="number"
+            placeholder="G"
+            min="0"
+            max="255"
+            style="width: 60px; padding: 6px; font-size: 14px"
+          />
+          <input
+            id="b-input"
+            type="number"
+            placeholder="B"
+            min="0"
+            max="255"
+            style="width: 60px; padding: 6px; font-size: 14px"
+          />
+          <button id="submit-rgb" style="padding: 6px; font-size: 14px">
+            ✔
+          </button>
+        </div>
+      </div>
+
+      <div id="presets-container" style="margin-top: 12px">
+        <label style="display: block; font-size: 14px">Presets:</label>
+        <div id="presets" style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button
+            class="preset"
+            data-color="#FAC900"
+            style="
+              background-color: #fac900;
+              color: white;
+              border: none;
+              padding: 6px;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Default
+          </button>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 8px">
+          <button
+            id="add-preset"
+            style="flex-grow: 1; padding: 6px; font-size: 14px"
+          >
+            Add Preset
+          </button>
+          <button
+            id="delete-mode"
+            style="width: 40px; height: 40px; padding: 6px; font-size: 14px"
+          >
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
