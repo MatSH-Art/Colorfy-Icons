@@ -1,4 +1,6 @@
-# Colorfy-Icons
+
+# <img src="https://github.com/MatSH-Art/Colorfy-Icons/blob/main/icon128.png" width="30">  Colorfy-Icons
+
 A simple extension that attempts to bring a minimalistic colorful icon style to Chrome's tab icons.
 
 # Summary
