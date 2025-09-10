@@ -10,7 +10,7 @@ A simple extension that attempts to bring a minimalistic colorful icon style to 
 This extension allows users to customize and recolor website favicons directly in their browser. With features like preset management, RGB/HEX color input, and exception handling, this extension provides a seamless way to personalize your browsing experience.
 
 Features
-- Recolor Favicons: Change website favicons to your preferred color using RGB or HEX values.
+- Recolor Favicons: Change website favicons to _your preferred color using RGB or HEX values._
 - Preset Management: Save, delete, and manage color presets for quick access.
 - Custom Favicon URLs: Replace favicons with custom images by providing a URL.
 - Exception Handling: Exclude specific websites from recoloring.
