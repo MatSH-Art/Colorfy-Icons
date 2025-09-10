@@ -2,6 +2,9 @@
 # <img src="https://github.com/MatSH-Art/Colorfy-Icons/blob/main/icon128.png" width="30">  Colorfy-Icons
 
 A simple extension that attempts to bring a minimalistic colorful icon style to Chrome's tab icons.
+<p align="center">
+<img src="https://github.com/MatSH-Art/Colorfy-Icons/blob/main/Screenshot.png" >
+</p>
 
 # Summary
 This extension allows users to customize and recolor website favicons directly in their browser. With features like preset management, RGB/HEX color input, and exception handling, this extension provides a seamless way to personalize your browsing experience.
